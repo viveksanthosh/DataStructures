@@ -27,6 +27,23 @@ class LinkedList {
             node.link = newNode;
         }
     }
+
+    addBetween(data, pos: number) {
+        let count = 0;
+        const newNode = new LinkNode(data, null)
+        if (this.head === null)
+            this.head = newNode;
+        else {
+            let node = this.head;
+            while (node.link && count < pos -1) {
+                node = node.link;
+                count++;
+            }
+            let tmp = node.link;
+            node.link = newNode;
+            newNode.link = tmp;
+        }
+    }
 }
 
 let list = new LinkedList();
@@ -35,5 +52,10 @@ list.addToStart(1);
 
 console.dir(list);
 list.addToEnd(3);
+console.log('---------');
+console.dir(JSON.stringify(list));
+
+list.addBetween(4, 1);
+
 console.log('---------');
 console.dir(JSON.stringify(list));
